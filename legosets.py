@@ -8,7 +8,7 @@ from tkinter import messagebox
 from PIL import ImageTk, Image
 
 import mysql.connector
-
+import tkinter as tk
 
 # setup our database
 db = mysql.connector.connect (
@@ -19,10 +19,7 @@ db = mysql.connector.connect (
 
 my_cursor = db.cursor()
 
-
-
-
-root = Tk()
+root = tk.Tk()
 root.title('Lego sets and Mini Figures')
 root.geometry ("1000x600")
 
@@ -103,18 +100,11 @@ for record in results:
 		my_tree.insert(parent='', index='end', iid=count, text='', values=(record[1], record[5], record[6], record[7], record[9], record[2], record[8], record[3], record[4]), tags=('evenrow',))
 	else:
 		my_tree.insert(parent='', index='end', iid=count, text='', values=(record[1], record[5], record[6], record[7], record[9], record[2], record[8], record[3], record[4]), tags=('oddrow',))
-	# increment counter
+	# increment counte
 	count += 1
 
-'''
-for index, x in enumerate(results):
-	num = 0
-	for y in x:
-		lookup_label = Label(list_customer_query, text=y)
-		lookup_label.grid(row=index, column=num)
-		num +=1
 
-'''
+
 # Clear Text Fields
 def clear_fields():
 	catalog_number_entry.delete(0, END)
@@ -148,6 +138,11 @@ def select_record(e):
 	item_retired_entry.insert(0, values[6])
 	first_year_entry.insert(0, values[7])
 	last_year_entry.insert(0, values[8])
+
+
+#    pictItem = "Legoimages"+catalog_number_entry+".png"
+#    pictBox  = "Legoimages"+catalog_number_entry+"box.png"
+
 
 
 # Add Record To Database
@@ -233,10 +228,11 @@ category_label.grid(row=0, column=2, padx=10, pady=10)
 category_entry = Entry(middle_frame)
 category_entry.grid(row=0, column=3, padx=10, pady=10)
 
-title_label = Label(middle_frame, text="Title", justify=RIGHT)
-title_label.grid(row=0, column=4, padx=10, pady=10)
-title_entry = Entry(middle_frame, width=20)
+title_label = Label(middle_frame, text="Title")
+title_label.grid(row=0, column=4, padx=10, pady=10, sticky='w')
+title_entry = Entry(middle_frame, width=110)
 title_entry.grid(row=0, column=5, padx=10, pady=10)
+
 
 # second line of entry boxes and titles
 original_price_label = Label(middle_frame, text="Original $")
@@ -249,10 +245,12 @@ taobao_price_label.grid(row=1, column=2, padx=10, pady=10)
 taobao_price_entry = Entry(middle_frame, justify=RIGHT)
 taobao_price_entry.grid(row=1, column=3, padx=10, pady=10)
 
-owned_by_label = Label(middle_frame, text="Owned By", justify=LEFT)
-owned_by_label.grid(row=1, column=4, padx=10, pady=10)
+owned_by_label = Label(middle_frame, text="Owned By")
+owned_by_label.grid(row=1, column=4, padx=10, pady=10, sticky='w')
 owned_by_entry = Entry(middle_frame)
-owned_by_entry.grid(row=1, column=5, padx=10, pady=10)
+owned_by_entry.grid(row=1, column=5, padx=10, pady=10, sticky='w')
+
+
 
 # third line of entry boxes and titles
 first_year_label = Label(middle_frame, text="First Year")
@@ -265,10 +263,10 @@ last_year_label.grid(row=2, column=2, padx=10, pady=10)
 last_year_entry = Entry(middle_frame)
 last_year_entry.grid(row=2, column=3, padx=10, pady=10)
 
-item_retired_label = Label(middle_frame, text="Status", justify=LEFT)
-item_retired_label.grid(row=2, column=4, padx=10, pady=10)
+item_retired_label = Label(middle_frame, text="Status")
+item_retired_label.grid(row=2, column=4, padx=10, pady=10, sticky='w')
 item_retired_entry = Entry(middle_frame)
-item_retired_entry.grid(row=2, column=5, padx=10, pady=10)
+item_retired_entry.grid(row=2, column=5, padx=10, pady=10, sticky='w')
 
 # Add action buttons
 button_frame = LabelFrame(root, text="Logo")
@@ -287,9 +285,22 @@ select_record_button = Button(button_frame, text="Clear Entry Fields", command=c
 select_record_button.grid(row=0, column=4, padx=10, pady=10)
 
 # Add Image
-my_image = ImageTk.PhotoImage(Image.open("images\lego-minifigures-logo.png"))
-image_label = Label(image=my_image)
-#image_label.grid(row=0,column=0,padx=5,pady=5)
+
+# my_image = ImageTk.PhotoImage(Image.open("Lego_images\\Lego75342.png"))
+# image_label = Label(image=my_image)
+
+# Create a photoimage object of the image in the path
+image1 = Image.open("Lego_images\\Lego7499box-thm.png")
+test = ImageTk.PhotoImage(image1)
+
+label1 = tk.Label(image=test)
+label1.image = test
+
+# Position image
+label1.place(x=1, y=2)
+root.mainloop()
+# #show image
+# im.show()
 
 
 # bind the treeview
