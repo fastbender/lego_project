@@ -38,11 +38,11 @@ style.configure("Treeview",
 style.map('TreeView',
 	background=[('selected',"#347083")])
 
-# crate the frame to hold the Treeview
+# create the frame to hold the Treeview
 tree_frame = Frame(root)
 tree_frame.pack(pady=10)   # this makes the frame slightly down from the top of the screen
 
-# creat a scroll bar for the treeview
+# create a scroll bar for the treeview
 tree_scroll = Scrollbar(tree_frame)
 tree_scroll.pack(side=RIGHT, fill=Y)
 
@@ -230,7 +230,7 @@ label1 = tk.Label(image=test)
 label1.image = test
 
 # Position image
-label1.place(x=1, y=2)
+#label1.place(x=1, y=2)
 
 
 
@@ -304,10 +304,6 @@ delete_button.grid(row=0, column=2, padx=10, pady=10)
 select_record_button = Button(button_frame, text="Clear Entry Fields", command=clear_fields)
 select_record_button.grid(row=0, column=4, padx=10, pady=10)
 
-
-root.mainloop()
-# #show image
-# im.show()
 
 
 # bind the treeview
