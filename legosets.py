@@ -216,6 +216,26 @@ def update_record():
 middle_frame = LabelFrame(root, text="Record")
 middle_frame.pack(fill="x", expand="yes", padx=20)
 
+
+# Add Image
+
+# my_image = ImageTk.PhotoImage(Image.open("Lego_images\\Lego75342.png"))
+# image_label = Label(image=my_image)
+
+# Create a photoimage object of the image in the path
+image1 = Image.open("Lego_images\\Lego7499box-thm.png")
+test = ImageTk.PhotoImage(image1)
+
+label1 = tk.Label(image=test)
+label1.image = test
+
+# Position image
+label1.place(x=1, y=2)
+
+
+
+
+
 # Add Record Entry Boxes
 # first line of entry boxes and titles
 catalog_number_label = Label(middle_frame, text="Catalog #")
@@ -284,20 +304,7 @@ delete_button.grid(row=0, column=2, padx=10, pady=10)
 select_record_button = Button(button_frame, text="Clear Entry Fields", command=clear_fields)
 select_record_button.grid(row=0, column=4, padx=10, pady=10)
 
-# Add Image
 
-# my_image = ImageTk.PhotoImage(Image.open("Lego_images\\Lego75342.png"))
-# image_label = Label(image=my_image)
-
-# Create a photoimage object of the image in the path
-image1 = Image.open("Lego_images\\Lego7499box-thm.png")
-test = ImageTk.PhotoImage(image1)
-
-label1 = tk.Label(image=test)
-label1.image = test
-
-# Position image
-label1.place(x=1, y=2)
 root.mainloop()
 # #show image
 # im.show()
